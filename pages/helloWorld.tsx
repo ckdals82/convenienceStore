@@ -1,6 +1,14 @@
 import { Button, Col, Input, Row } from "antd";
 import React, { useState } from "react";
-
+import DataGrid from "@toast-ui/react-grid";
+const columns: any[] = [
+  {
+    name: "brandId",
+    header: "ID",
+    align: "center",
+    sortable: true,
+  },
+];
 const HelloWorld = () => {
   return (
     <>
@@ -14,7 +22,10 @@ const HelloWorld = () => {
           <Button>1+1</Button> <Button>2+1</Button>
         </Col>
         {/* 조회영역 */}
-        <Col>{/* tuiGrid */}</Col>
+        <Col span={24}>
+          <DataGrid columns={columns} />
+          {/* tuiGrid */}
+        </Col>
       </Row>
     </>
   );
