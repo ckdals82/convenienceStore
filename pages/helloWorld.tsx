@@ -1,6 +1,12 @@
 import { Button, Col, Input, Row } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import dynamic from "next/dynamic";
 import DataGrid from "@toast-ui/react-grid";
+
+const DynamicTuiGrid = dynamic(() => import("../public/DynamicTuiGrid"), {
+  ssr: false,
+});
 const columns: any[] = [
   {
     name: "brandId",
@@ -9,7 +15,19 @@ const columns: any[] = [
     sortable: true,
   },
 ];
+
 const HelloWorld = () => {
+  const [rowData, setRowData] = useState<any>([]);
+  React.useEffect(() => {
+    axios
+      .get("http://dev.taxijjang.site/convenience/products/slice")
+      .then((res) => {
+        console.log(res);
+        setRowData(res);
+      });
+
+    console.log("hello");
+  }, []);
   return (
     <>
       <Row>
